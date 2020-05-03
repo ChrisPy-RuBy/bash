@@ -8,6 +8,7 @@ main () {
         mv ./$projectname/pystartfile.py ./$projectname/$projectname.py
         mv ./$projectname/pystarttestfile.py ./$projectname/test_$projectname.py
         touch ./$projectname/__init__.py
+        touch ./$projectname/README.md
         sed -i "s/newProject/$projectname/g" ./$projectname/test_$projectname.py
         cd ./$projectname
         echo "run tests like 'python3 -m unittest discover \"test_$projectname\"'"
