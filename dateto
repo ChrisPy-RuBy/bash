@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+
+
+
+
+#check OS type
+if [[ $OSTYPE =~ "darwin" ]]; then
+        date=gdate
+else
+        date=date
+fi
+
+main () {
+        if [[ -z $1 ]]; then
+                echo "please provide a datefrom and a timedelta in the format: Y-m-d '+? days'"
+        else
+                datefrom=$1
+                timedelta=$2
+                dateto=$($date -d "$datefrom $timedelta" +"%Y-%m-%d %a")
+                echo "$datefrom -----> $dateto"
+        fi
+}
+
+main "$@"

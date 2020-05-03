@@ -27,13 +27,13 @@ frontendtmux () {
 }
 
 labbooktmux () {
-        #echo "setup labook"
+        #echo "setup labbook"
         tmux new-session -d -s labbook 'cd ~/labbook; mkdocs serve'
 }
 
 main () {
      #   tmux new-session -d -s mongo 'mongod'
-        #echo "setup labook"
+        #echo "setup labbook"
         tmux new-session -d -s labbook 'cd ~/labbook; mkdocs serve'
         #echo 'setup frontend'
         tmux new-session -d -s frontend "cd ~/dev/tvsquared-frontend; ./bin/runserver"
