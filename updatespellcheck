@@ -6,5 +6,3 @@ head -n +1 $HOME/.aspell.en.pws > $HOME/.aspell.x.txt
 grep -vE '\d' $HOME/.config/nvim/spell/en.utf-8.added >> $HOME/.aspell.x.txt 
 rm $HOME/.aspell.en.pws 
 mv $HOME/.aspell.x.txt $HOME/.aspell.en.pws
-
-
