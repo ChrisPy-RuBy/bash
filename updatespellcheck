@@ -1,8 +1,22 @@
 #!/usr/bin/env bash
 
-tail -n +1 $HOME/.aspell.en.pws >> $HOME/.config/nvim/spell/en.utf-8.add
-sort $HOME/.config/nvim/spell/en.utf-8.add | uniq > $HOME/.config/nvim/spell/en.utf-8.added
-head -n +1 $HOME/.aspell.en.pws > $HOME/.aspell.x.txt
-grep -vE '\d' $HOME/.config/nvim/spell/en.utf-8.added >> $HOME/.aspell.x.txt 
-rm $HOME/.aspell.en.pws 
-mv $HOME/.aspell.x.txt $HOME/.aspell.en.pws
+aspellfile=$HOME/.aspell.en.pws 
+nvimtempfile=$HOME/.config/nvim/spell/en.utf-8.added
+aspelltempfile=$HOME/.aspell.x.txt
+nvimfile=$HOME/.config/nvim/spell/en.utf-8.add
+
+if [[ -f $nvimtempfile ]]; then
+        rm $nvimtempfile
+fi
+
+if [[ -f $aspelltempfile ]]; then
+        rm $aspelltempfile
+fi
+
+
+head -n +1 $aspellfile > $aspelltempfile
+tail +1 $aspellfile >> $nvimfile
+sort $nvimfile | uniq > $nvimtempfile 
+grep -vE '[0-9]+' $nvimtempfile >> $aspelltempfile 
+rm $aspellfile
+mv $aspelltempfile $aspellfile

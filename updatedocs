@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+REPOS=(
+        "labbook"
+        "life"
+)
+
+for folder in "${REPOS[@]}"; do
+        cd $HOME/$folder/docs; 
+        git pull --rebase --autostash 
+        if [[ $? -eq 0 ]];then
+                echo "Got $folder"
+        else echo "Problems getting $folder"
+        fi
+done
+
+
+
