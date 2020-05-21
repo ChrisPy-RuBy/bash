@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "Unmount disk"
+diskutil unmountDisk /dev/disk2
+
+echo  "Grant access permissions"
+sudo chown $USER /dev/disk2*

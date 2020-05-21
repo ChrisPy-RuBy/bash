@@ -4,7 +4,7 @@ set -euo pipefail
 ## Practice script setting up tmux sessions that I use a lot. 
 ## Also practice for using the getopts tool in bash
 
-sessions=("jq" "labbook" "frontend")
+sessions=("jq" "labbook" "frontend" "life")
 
 txkill () {
         tmux kill-server
@@ -31,6 +31,11 @@ labbooktmux () {
         tmux new-session -d -s labbook 'cd ~/labbook; mkdocs serve'
 }
 
+lifetmux () {
+        #echo "setup labbook"
+        tmux new-session -d -s life 'cd ~/life; mkdocs serve'
+}
+
 main () {
      #   tmux new-session -d -s mongo 'mongod'
         #echo "setup labbook"
@@ -38,13 +43,7 @@ main () {
         #echo 'setup frontend'
         tmux new-session -d -s frontend "cd ~/dev/tvsquared-frontend; ./bin/runserver"
         #echo 'setup jq'
-        tmux new-session -d -s jq "cd ~/dev/tvsquared-backend; python3 -m tvsquared.tools.jobqueue show" \; \
-                split-window -v -p 50 \; \
-                split-window -v -p 90 \; \
-                send-keys 'cd ~/dev/tvsquared-backend; python3 -m tvsquared.tools.jobqueue stop; python3 -m tvsquared.tools.jobqueue cleanlocks' C-m \; \
-                send-keys 'python3 -m tvsquared.tools.jobqueue start' C-m \; \
-                send-keys 'python3 -m tvsquared.jobqueue.execute -vv dev' C-m \; 
-                # send-keys "cd ~/dev/tvsquared-backend;" C-m \; 
+        jqtmux
 }
 
 while getopts ":hkas:" opt; do
@@ -77,6 +76,9 @@ while getopts ":hkas:" opt; do
                 ;;
         labbook )
                 labbooktmux
+                ;;
+        life )
+                lifetmux
                 ;;
         \? )
                 echo "dunno that one"
