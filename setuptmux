@@ -65,7 +65,7 @@ while getopts ":hkas:" opt; do
       main
       ;;
     s )
-      echo "Setting up specific tmux session"
+      #echo "Setting up specific tmux session"
       session=$OPTARG
       case $session in 
         jq )
