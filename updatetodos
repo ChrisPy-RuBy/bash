@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+to_get=("to_add"
+		"to_make"
+		"to_learn"
+		"to_write"
+		"to_do")
+
+
+for item in "${to_get[@]}"; do
+	echo "$item"
+	tmp_todos=$HOME/life/docs/ToDos/$item.tmp.md
+	todos=$HOME/life/docs/ToDos/$item.md
+	ag --nobreak --nonumbers --noheading --nofilename  $item $HOME/labbook > $tmp_todos
+	cat $todos >> $tmp_todos
+	sort $tmp_todos | uniq > $todos
+	rm $tmp_todos
+	
+done
