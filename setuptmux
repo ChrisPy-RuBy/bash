@@ -27,13 +27,13 @@ frontendtmux () {
 }
 
 labbooktmux () {
-        #echo "setup labbook"
-        tmux new-session -d -s labbook 'cd ~/labbook; mkdocs serve'
+        echo "View labbook on: http://127.0.0.1:9999/"
+        tmux new-session -d -s labbook 'cd ~/labbook; mkdocs serve' > /dev/null 2>&1
 }
 
 lifetmux () {
-        #echo "setup labbook"
-        tmux new-session -d -s life 'cd ~/life; mkdocs serve'
+        echo "View life on: http://127.0.0.1:8000/"
+        tmux new-session -d -s life 'cd ~/life; mkdocs serve' > /dev/null 2>&1
 }
 
 main () {
