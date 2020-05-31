@@ -13,5 +13,10 @@ for item in "${to_get[@]}"; do
 	cat $todos >> $tmp_todos
 	sort $tmp_todos | uniq > $todos
 	rm $tmp_todos
-	
 done
+
+while read line;
+do
+	echo "$line"
+  sed -i "/"$line"/d" $HOME/life/docs/ToDos/*.md 
+done < $HOME/life/docs/ToDone/to_done.md
