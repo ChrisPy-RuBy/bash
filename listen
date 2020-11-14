@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+address=$(hostname -I)
+port=4444
+echo "listening on $address$port"
+nc -d 4444 -l 
