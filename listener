@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 address=$(getip)
-port=4444
+port=$(( $RANDOM % 35000 + 10000))
 echo "listening on $address $port"
-nc -d 4444 -l 
+nc -d "$port" -l 
