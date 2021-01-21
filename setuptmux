@@ -32,7 +32,7 @@ labbooktmux () {
 }
 
 lifetmux () {
-        echo "View life on: http://127.0.0.1:8000/"
+        echo "View life on: http://127.0.0.1:8001/"
         tmux new-session -d -s life 'cd ~/life; mkdocs serve' > /dev/null 2>&1
 }
 
